@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSE Quiz Master | Master Your Computer Science Knowledge</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Orbitron:wght@600;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="dark-mode">
+
+    <!-- ===== Navigation ===== -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-terminal"></i> CSE Quiz Master
+            </div>
+            <div class="nav-actions">
+                <div class="high-score-display">
+                    <i class="fas fa-trophy"></i> High Score: <span id="global-high-score">0</span>
+                </div>
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- ===== Home Screen ===== -->
+        <section id="home-screen" class="screen active">
+            <div class="hero">
+                <h1>Ready to test your <span>CSE Skills?</span></h1>
+                <p>Choose a category to start your journey towards mastery.</p>
+            </div>
+            <div class="categories-grid" id="categories-container">
+                <!-- Categories will be injected here -->
+            </div>
+        </section>
+
+        <!-- ===== Subcategory Screen ===== -->
+        <section id="subcategory-screen" class="screen">
+            <div class="breadcrumb">
+                <button onclick="showScreen('home-screen')" class="back-btn"><i class="fas fa-arrow-left"></i>
+                    Home</button>
+                <h2 id="current-category-name">Programming</h2>
+            </div>
+            <div class="subcategories-grid" id="subcategories-container">
+                <!-- Subcategories injected here -->
+            </div>
+        </section>
+
+        <!-- ===== Quiz Screen ===== -->
+        <section id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <div class="quiz-info">
+                    <div class="info-chunk">
+                        <span class="label">Category:</span>
+                        <span id="quiz-title-display">C Language</span>
+                    </div>
+                    <div class="info-chunk">
+                        <span class="label">Question:</span>
+                        <span id="question-counter">1 of 15</span>
+                    </div>
+                </div>
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <!-- Timer -->
+                <div class="timer-display" id="timer-box">
+                    <i class="fas fa-clock"></i> <span id="time-left">15</span>s
+                </div>
+            </div>
+
+            <div class="quiz-body">
+                <h2 id="question-text">Question loading...</h2>
+                <div class="options-container" id="options-container">
+                    <!-- Options injected here -->
+                </div>
+            </div>
+
+            <div class="quiz-footer">
+                <button id="next-btn" class="btn btn-primary" disabled>Next Question <i
+                        class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- ===== Result Screen ===== -->
+        <section id="result-screen" class="screen">
+            <div class="result-card">
+                <div class="result-icon">
+                    <i id="feedback-icon" class="fas fa-check-circle"></i>
+                </div>
+                <h2 id="feedback-text">Excellent!</h2>
+                <p id="motivational-message">You are a true Computer Science Master.</p>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Questions</span>
+                        <span class="stat-value" id="res-total">15</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Correct</span>
+                        <span class="stat-value text-success" id="res-correct">12</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Wrong</span>
+                        <span class="stat-value text-danger" id="res-wrong">3</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Score</span>
+                        <span class="stat-value" id="res-score">12</span>
+                    </div>
+                </div>
+
+                <div class="percentage-circle">
+                    <svg viewBox="0 0 36 36" class="circular-chart">
+                        <path class="circle-bg"
+                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <path class="circle" id="percentage-circle-path" stroke-dasharray="0, 100"
+                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <text x="18" y="20.35" class="percentage" id="res-percentage">0%</text>
+                    </svg>
+                </div>
+
+                <div class="result-actions">
+                    <button onclick="restartQuiz()" class="btn btn-primary"><i class="fas fa-redo"></i> Restart
+                        Quiz</button>
+                    <button onclick="showScreen('home-screen')" class="btn btn-outline"><i class="fas fa-home"></i> Go
+                        to Home</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="quiz-footer-main">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-terminal"></i> <span>DharmaTeja</span> Quiz Master
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/vaddidharmateja" target="_blank"><i class="fab fa-github"></i>
+                        GitHub</a>
+                    <a href="https://linkedin.com/in/vaddihemanthsridharmateja/" target="_blank"><i
+                            class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+                <p class="copyright">&copy; 2026 CSE Quiz Master. Designed for excellence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sound Effects -->
+    <audio id="sound-correct" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3"></audio>
+    <audio id="sound-wrong" src="https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3"></audio>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
